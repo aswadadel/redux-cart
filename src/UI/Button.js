@@ -11,7 +11,7 @@ const StyledButton = styled.button`
   font-size: 1rem;
   font-weight: bold;
   ${props => props.light? 'border: 2px solid brown;':'border: none;'}
-  
+  cursor: pointer;
   & span {
     background-color: crimson;
     border-radius: 50%;
@@ -21,8 +21,8 @@ const StyledButton = styled.button`
   }
 `;
 
-function Button({ children , light, onClick: clickHandler}) {
-  return <StyledButton light={light} onClick={clickHandler}>{children}</StyledButton>;
+function Button({ children , light, onClick: clickHandler, animation}) {
+  return <StyledButton className={animation} light={light} onClick={clickHandler}>{children}</StyledButton>;
 }
 
 export default Button;

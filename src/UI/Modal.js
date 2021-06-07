@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import styled from "styled-components";
 import Card from "./Card";
 
@@ -14,18 +15,25 @@ const BackDrop = styled.div`
   z-index: 10;
 `;
 const Window = styled(Card)`
-    position: fixed;
-    top: 20%;
-    left: 30%;
-    width: 40%;
-    z-index: 11;
+  position: fixed;
+  top: 20%;
+  left: 30%;
+  width: 40%;
+  z-index: 11;
 `;
 
-function Modal({ children }) {
+const portal = document.getElementById("modal-root");
+
+function Modal({ children, clickHandler }) {
   return (
     <>
-      <BackDrop />
-      <Window>{children}</Window>
+      {ReactDOM.createPortal(
+        <>
+          <BackDrop onClick={clickHandler} />
+          <Window>{children}</Window>
+        </>,
+        portal
+      )}
     </>
   );
 }
